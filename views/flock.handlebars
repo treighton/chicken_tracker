@@ -1,0 +1,110 @@
+  <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Flock started on {{dataValues.startDate}}</h2>
+        </div>
+        </div>
+    </div>
+</div>
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>
+                Records
+            </h2>
+        </div>
+        <div class="col text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFlock">
+               Add Record
+            </button>
+        </div>
+    </div>
+         {{#if DailyRecords}}
+                <table class="table">
+                    <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Temp.</th>
+                          <th scope="col">Feed</th>
+                          <th scope="col">Bedding</th>
+                          <th scope="col">Mortality</th>
+                          <th scope="col">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each DailyRecords}}
+                    <tr>
+                        <td>{{this.dataValues.date}}</td>
+                        <td>{{this.dataValues.temperature}}</td>
+                        <td>{{this.dataValues.feed}}</td>
+                        <td>{{this.dataValues.bedding}}</td>
+                        <td>{{this.dataValues.mortality}}</td>
+                        <td>{{this.dataValues.notes}}</td>
+                        <td><a href="/record/edit/{{this.dataValues.id}}">Edit</a></td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+        {{else}}
+        <div class="row">
+            <div class="col text-center">
+                <p>It looks like you dont have any records yet. Use the form below to add one.</p>
+            </div>
+        </div>
+        {{/if}}
+  </div>
+<div class="modal fade" id="addFlock" tabindex="-1" aria-labelledby="addFlockLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addFlockLabel">Add Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form id="add-record" data-flock={{dataValues.id}}>
+            <div class="form-group">
+                <label for="start-date">Date</label>
+                <input type="date" class="form-control" id="start-date" placeholder="Start date">
+            </div>
+            <div class="form-group">
+                <label for="temp">Temperature (f)</label>
+                <input type="number" class="form-control" id="temp" placeholder="Temperature Reading">
+            </div>
+            <div class="form-group">
+                <label for="feed">Feed</label>
+                <input type="number" class="form-control" id="feed" placeholder="Number of scoops">
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="bedding" placeholder="Added bedding">
+                  <label class="custom-control-label" for="bedding">Bedding</label>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="mortality">Mortality</label>
+                <input type="number" class="form-control" id="mortality" placeholder="Number of birds lost">
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea class="form-control" id="note" placeholder="Notes..."></textarea>
+            </div>
+            
+            <input class="btn btn-primary" type="submit" value="Add Flock">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

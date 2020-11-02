@@ -1,0 +1,85 @@
+  <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Welcome {{ firstName }} {{ lastName }}</h2>
+        </div>
+        </div>
+    </div>
+</div>
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>
+                Flocks
+            </h2>
+        </div>
+        <div class="col text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFlock">
+               Add Flock
+            </button>
+        </div>
+    </div>
+         {{#if Flocks}}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Number of birds</th>
+                        <th scope="col">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each Flocks}}
+                    <tr>
+                        <td><a href="/flock/{{this.dataValues.id}}">{{this.dataValues.startDate}}</a></td>
+                        <td>{{this.dataValues.birdCount}}</td>
+                        <td><a href="/api/flock/{{this.dataValues.id}}">Edit</a></td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+        {{else}}
+        <div class="row">
+            <div class="col text-center">
+                <p>It looks like you dont have any flocks yet. Use the form below to add one.</p>
+            </div>
+        </div>
+        {{/if}}
+  </div>
+<div class="modal fade" id="addFlock" tabindex="-1" aria-labelledby="addFlockLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addFlockLabel">Add Flock</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form id="add-flock">
+            <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input type="date" class="form-control" id="start-date" placeholder="Start date">
+            </div>
+            <div class="form-group">
+                <label for="bird-count">Bird Count</label>
+                <input type="number" class="form-control" id="bird-count" placeholder="Number of birds at start">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Add Flock">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

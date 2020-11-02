@@ -5,8 +5,20 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
          },
-        birdCount: {
+        temperature: {
             type: DataTypes.INTEGER,
+        },
+        feed: {
+            type: DataTypes.INTEGER
+        },
+        bedding: {
+            type: DataTypes.BOOLEAN
+        },
+        mortality: {
+            type: DataTypes.INTEGER
+        },
+        notes:{
+            type: DataTypes.STRING,
         }
     });
 
