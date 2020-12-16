@@ -12,8 +12,6 @@ $(document).ready(() => {
     });
   })
 
-  console.log('poop')
-
   $('#add-record').on('submit', (e) => {
     e.preventDefault()
 
